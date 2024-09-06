@@ -71,13 +71,20 @@ const Weather = () => {
   }
 
   useEffect(() => {
-    search('Mexico City')
+    search('Toronto')
   }, [])
 
   return (
     <div className='weather'>
       <div className='search-bar'>
-        <input ref={inputRef} type='text' placeholder='Search...' />
+        <input
+          ref={inputRef}
+          type='text'
+          placeholder='Search...'
+          onChange={(e) => {
+            const filteredValue = e.target.value.replace(/[0-9]/g, '');
+            e.target.value = filteredValue;
+          }}/>
         <img src={search_icon} alt="" onClick={() => search(inputRef.current.value)}></img>
       </div>
 
